@@ -47,26 +47,6 @@ pc.defineParameter("osImage", "Select Image",
                    imageList[0], imageList,
                    longDescription="Supported operating systems are Ubuntu and CentOS.")  
 
-# Optional ephemeral blockstore
-pc.defineParameter("tempFileSystemSize", "Temporary Filesystem Size",
-                   portal.ParameterType.INTEGER, 0,advanced=True,
-                   longDescription="The size in GB of a temporary file system to mount on each of your " +
-                   "nodes. Temporary means that they are deleted when your experiment is terminated. " +
-                   "The images provided by the system have small root partitions, so use this option " +
-                   "if you expect you will need more space to build your software packages or store " +
-                   "temporary files.")
-# Instead of a size, ask for all available space. 
-pc.defineParameter("tempFileSystemMax",  "Temp Filesystem Max Space",
-                    portal.ParameterType.BOOLEAN, False,
-                    advanced=True,
-                    longDescription="Instead of specifying a size for your temporary filesystem, " +
-                    "check this box to allocate all available disk space. Leave the size above as zero.")
-
-pc.defineParameter("tempFileSystemMount", "Temporary Filesystem Mount Point",
-                   portal.ParameterType.STRING,"/mydata",advanced=True,
-                   longDescription="Mount the temporary file system at this mount point; in general you " +
-                   "you do not need to change this, but we provide the option just in case your software " +
-                   "is finicky.")  
                    
 # Retrieve the values the user specifies during instantiation.
 params = pc.bindParameters()        
@@ -95,7 +75,7 @@ for nodeName in nodeList:
         else:
             bs.size = str(params.tempFileSystemSize) + "GB"
         bs.placement = "any"
-
+      
     host.addService(pg.Execute(shell="bash", command="sudo /local/repository/post-boot.sh " + params.workflow + " " + params.toolVersion + " >> /local/logs/output_log.txt"))
   
     i+=1
