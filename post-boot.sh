@@ -8,3 +8,6 @@ sudo apt install /proj/octfpga-PG0/tools/v80/amd-vrt_1.0.0_2025-09-15-22-20-35_a
 #Install the QDMA driver
 sudo apt-get install libaio-dev
 scp -r /proj/octfpga-PG0/tools/v80/qdma_drv /tmp/ && cd /tmp/qdma_drv/QDMA/linux-kernel/ && make && sudo make install
+
+#Card preparation
+sudo ami_tool cfgmem_program -d 0d:00.0 -i /opt/amd/vrt/design.pdi -t primary -p 1 -y
