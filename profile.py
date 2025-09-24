@@ -66,8 +66,13 @@ for nodeName in nodeList:
     # Assign to the node hosting the FPGA.
     host.component_id = nodeName
     host.disk_image = params.osImage
-      
-    host.addService(pg.Execute(shell="bash", command="sudo /local/repository/post-boot.sh " + params.workflow + " " + params.toolVersion + " >> /local/logs/output_log.txt"))
+
+    if params.workflow == "Vitis":
+        cmd = "sudo /local/repository/post-boot-vitis.sh " + params.toolVersion + " >> /local/logs/output_log.txt"
+    else:
+        cmd = "sudo /local/repository/post-boot-vivado.sh " + params.toolVersion + " >> /local/logs/output_log.txt"
+
+    host.addService(pg.Execute(shell="bash", command=cmd))
   
     i+=1
 
