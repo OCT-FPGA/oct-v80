@@ -10,4 +10,4 @@ sudo apt-get install libaio-dev
 scp -r /share/tools/v80/vitis-flow/qdma_drv /tmp/ && cd /tmp/qdma_drv/linux-kernel/ && make && sudo make install
 
 #Card preparation
-sudo ami_tool cfgmem_program -d 0d:00.0 -i /opt/amd/vrt/design.pdi -t primary -p 1 -y
+#sudo ami_tool cfgmem_program -d 0d:00.0 -i /opt/amd/vrt/design.pdi -t primary -p 1 -y
