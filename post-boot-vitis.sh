@@ -1,3 +1,7 @@
+sudo mkdir -p fpga/Xilinx /fpga/tools   
+sudo mount -t nfs -o nolock ops.cloudlab.umass.edu:/fpga/Xilinx /fpga/Xilinx
+sudo mount -t nfs -o nolock ops.cloudlab.umass.edu:/fpga/tools /fpga/tools
+
 sudo apt update
 #sudo apt install libxml2-dev libzmq3-dev libjsoncpp-dev xvfb -y
 
