@@ -1,6 +1,10 @@
-sudo mkdir -p fpga/Xilinx /fpga/tools   
-sudo mount -t nfs -o nolock ops.cloudlab.umass.edu:/fpga/Xilinx /fpga/Xilinx
-sudo mount -t nfs -o nolock ops.cloudlab.umass.edu:/fpga/tools /fpga/tools
+mount_filesystems() {
+    sudo mkdir -p /fpga/tools   
+    sudo mount -t nfs -o nolock ops.cloudlab.umass.edu:/fpga/tools /fpga/tools
+
+install_pkg(){
+    sudo apt install -y cmake pkg-config ninja-build libxml2-dev libzmq3-dev libjsoncpp-dev zlib1g-dev libsystemd-dev libinih-dev libcli11-dev linux-headers-$(uname -r)
+}
 
 sudo apt update
 #sudo apt install libxml2-dev libzmq3-dev libjsoncpp-dev xvfb -y
@@ -15,3 +19,6 @@ sudo apt update
 
 #Card preparation
 #sudo ami_tool cfgmem_program -d 0d:00.0 -i /opt/amd/vrt/design.pdi -t primary -p 1 -y
+
+mount_filesystems
+install_pkg
