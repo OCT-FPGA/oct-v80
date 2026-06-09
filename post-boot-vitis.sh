@@ -3,6 +3,7 @@ mount_filesystems() {
     sudo mount -t nfs -o nolock ops.cloudlab.umass.edu:/fpga/tools /fpga/tools
 
 install_pkg(){
+    sudo apt update
     sudo apt install -y cmake pkg-config ninja-build libxml2-dev libzmq3-dev libjsoncpp-dev zlib1g-dev libsystemd-dev libinih-dev libcli11-dev linux-headers-$(uname -r)
 }
 
