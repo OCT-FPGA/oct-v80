@@ -1,6 +1,7 @@
 mount_filesystems() {
     sudo mkdir -p /fpga/tools   
     sudo mount -t nfs -o nolock ops.cloudlab.umass.edu:/fpga/tools /fpga/tools
+}    
 
 install_pkg(){
     sudo apt update
