@@ -59,7 +59,7 @@ pc.verifyParameters()
 lan = request.LAN()
 
 nodeList = params.nodes.split(',')
-i = 0
+
 for nodeName in nodeList:
     host = request.RawPC(nodeName)
     # UMass cluster
@@ -74,8 +74,6 @@ for nodeName in nodeList:
         cmd = "sudo /local/repository/post-boot-vivado.sh " + params.toolVersion + " >> /local/logs/output_log.txt"
 
     host.addService(pg.Execute(shell="bash", command=cmd))
-  
-    i+=1
 
 # Print Request RSpec
 pc.printRequestRSpec(request)
