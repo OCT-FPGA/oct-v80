@@ -3,24 +3,18 @@ mount_filesystems() {
     sudo mount -t nfs -o nolock ops.cloudlab.umass.edu:/fpga/tools /fpga/tools
 }    
 
-install_pkg(){
+install_headers(){
     sudo apt update
-    sudo apt install -y cmake pkg-config ninja-build libxml2-dev libzmq3-dev libjsoncpp-dev zlib1g-dev libsystemd-dev libinih-dev libcli11-dev linux-headers-$(uname -r)
+    sudo apt install linux-headers-$(uname -r)
 }
 
-sudo apt update
-#sudo apt install libxml2-dev libzmq3-dev libjsoncpp-dev xvfb -y
+install_ami_driver(){
+    sudo apt install $SLASH_BASE_PATH/deb/slashkit_1.0.0_amd64_*.deb
+}
 
-#Install AVED software stack
-#sudo apt install /share/tools/v80/vitis-flow/ami/ami_2.3.0-0.0bab29e5.20251021_amd64_22.04.deb
-#Install V80 runtime
-#sudo apt install /share/tools/v80/vitis-flow/vrt/amd-vrt_1.0.0_2025-11-25-03-52-43_amd64.deb
-#Install the QDMA driver
-#sudo apt-get install libaio-dev
-#scp -r /share/tools/v80/vitis-flow/qdma_drv /tmp/ && cd /tmp/qdma_drv/linux-kernel/ && make && sudo make install
-
-#Card preparation
-#sudo ami_tool cfgmem_program -d 0d:00.0 -i /opt/amd/vrt/design.pdi -t primary -p 1 -y
-
+TOOLVERSION=$1
+BASE_DIR="/fpga"
+SLASH_BASE_PATH="$BASE_DIR/tools/v80/$TOOLVERSION"
 mount_filesystems
-install_pkg
+install_headers
+install_ami_driver
