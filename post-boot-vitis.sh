@@ -31,6 +31,11 @@ check_slash() {
     fi
 }
 
+start_vrtd(){
+    sudo systemctl enable --now vrtd
+    sudo systemctl start vrtd
+}
+
 install_slash_packages(){
     sudo apt install -y \
     $SLASH_BASE_PATH/deb/slash-dkms_*_all.deb \
@@ -51,3 +56,4 @@ install_ami_driver
 install_slash_packages
 #program_board
 check_slash
+start_vrtd
