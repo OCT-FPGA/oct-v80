@@ -25,7 +25,7 @@ install_slash_packages(){
 
 TOOLVERSION=$1
 BASE_DIR="/fpga"
-SLASH_BASE_PATH="$BASE_DIR/tools/v80/$TOOLVERSION"
+SLASH_BASE_PATH="$BASE_DIR/tools/v80/$TOOLVERSION/SLASH"
 mount_filesystems
 install_headers
 install_ami_driver
