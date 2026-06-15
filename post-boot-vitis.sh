@@ -12,6 +12,25 @@ install_ami_driver(){
     sudo apt install $SLASH_BASE_PATH/deb/slashkit_1.0.0_amd64_*.deb
 }
 
+check_slash() {
+    echo "Attempting to load the SLASH module..."
+    
+    if sudo modprobe slash; then
+        echo "SLASH module loaded successfully."
+    else
+        echo "Error: Failed to load the SLASH module."
+        return 1
+    fi
+
+    if lsmod | grep -q "slash"; then
+        echo "Verification successful: SLASH module is active."
+        return 0
+    else
+        echo "Error: SLASH module not found."
+        return 1
+    fi
+}
+
 install_slash_packages(){
     sudo apt install -y \
     $SLASH_BASE_PATH/deb/slash-dkms_*_all.deb \
@@ -31,3 +50,4 @@ install_headers
 install_ami_driver
 install_slash_packages
 #program_board
+check_slash
