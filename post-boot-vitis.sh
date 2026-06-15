@@ -9,7 +9,7 @@ install_headers(){
 }
 
 install_ami_driver(){
-    sudo apt install $SLASH_BASE_PATH/deb/slashkit_1.0.0_amd64_*.deb
+    sudo apt install $SLASH_BASE_PATH/deb/ami_*.deb
 }
 
 check_slash() {
