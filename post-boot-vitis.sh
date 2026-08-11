@@ -47,6 +47,10 @@ install_slash_packages(){
     $SLASH_BASE_PATH/deb/slashkit_*_amd64.deb
 }
 
+install_other_packages(){
+    sudo apt install -y python3-pip
+}
+
 TOOLVERSION=$1
 BASE_DIR="/fpga"
 SLASH_BASE_PATH="$BASE_DIR/tools/v80/$TOOLVERSION/SLASH"
@@ -54,6 +58,7 @@ mount_filesystems
 install_headers
 install_ami_driver
 install_slash_packages
+install_other_packages
 #program_board
 check_slash
 start_vrtd
