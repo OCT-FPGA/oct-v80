@@ -53,7 +53,7 @@ install_other_packages(){
 
 TOOLVERSION=$1
 BASE_DIR="/fpga"
-SLASH_BASE_PATH="$BASE_DIR/tools/v80/$TOOLVERSION/SLASH"
+SLASH_BASE_PATH="$BASE_DIR/tools/v80/$TOOLVERSION/SLASH_DCMAC0"
 mount_filesystems
 install_headers
 install_ami_driver
